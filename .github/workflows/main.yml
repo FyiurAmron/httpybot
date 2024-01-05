@@ -20,5 +20,7 @@ jobs:
       #    key: docker-${{ runner.os }}
       - name: Repo checkout
         uses: actions/checkout@v4
+      - name: Install Selenium in Pythong
+        run: pip3 install selenium
       - name: Run script
         run: python3 test.py
