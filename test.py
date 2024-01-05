@@ -1,6 +1,7 @@
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 
-options = ChromeOptions()
+options = Options()
 options.headless = True
 chrome = webdriver.Chrome(options=options)
 
