@@ -20,7 +20,7 @@ jobs:
       #    key: docker-${{ runner.os }}
       - name: Repo checkout
         uses: actions/checkout@v4
-      - name: Install Selenium in Pythong
-        run: sudo apt install python3-pip -y && pip3 install selenium
+      - name: Install Selenium in Pythong # TODO just create an image with this added
+        run: wget https://bootstrap.pypa.io/get-pip.py && python3 get-pip.py && python3 -m pip install selenium
       - name: Run script
         run: python3 test.py
