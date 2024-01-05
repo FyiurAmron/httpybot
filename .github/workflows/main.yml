@@ -1,8 +1,8 @@
-name: runme
+name: run pythong action
 on:
   workflow_dispatch:
 jobs:
-  scrape:
+  run_pythong_action:
     runs-on: ubuntu-latest
     container:
       image: selenium/standalone-chrome
@@ -15,6 +15,6 @@ jobs:
       #options: --cpus 1    
     steps:
       - name: Check out this repo
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       #- name: Run the scraping script
       #  run: python action.py
