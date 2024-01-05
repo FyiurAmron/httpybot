@@ -6,8 +6,8 @@ jobs:
     runs-on: ubuntu-latest
     container: # TODO: download this docker inside the runner docker instead and cache it
       image: selenium/standalone-chrome
-      #env:
-      #  FOO: bar
+      env:
+        SE_OFFLINE: false
       #ports:
       #  - 80
       #volumes:
