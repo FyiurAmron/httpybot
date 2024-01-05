@@ -1,0 +1,20 @@
+name: runme
+on:
+  workflow_dispatch:
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    container:
+      image: selenium/standalone-chrome
+      #env:
+      #  FOO: bar
+      #ports:
+      #  - 80
+      #volumes:
+      #  - my_docker_volume:/volume_mount
+      #options: --cpus 1    
+    steps:
+      - name: Check out this repo
+        uses: actions/checkout@v2
+      #- name: Run the scraping script
+      #  run: python action.py
