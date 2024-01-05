@@ -21,6 +21,6 @@ jobs:
       - name: Repo checkout
         uses: actions/checkout@v4
       - name: Install Selenium in Pythong
-        run: pip3 install selenium
+        run: sudo apt install python3-pip -y && pip3 install selenium
       - name: Run script
         run: python3 test.py
