@@ -14,7 +14,13 @@ jobs:
       #  - my_docker_volume:/volume_mount
       options: --user root
     steps:
+      - name: Cache container images
+        id: cache-container-images
+        uses: jamesmortensen/cache-container-images-action@v1
+        with:
+          images: |
+            selenium/standalone-chrome
       - name: Repo checkout
         uses: actions/checkout@v4
       - name: Run script
-        run: python test.py
+        run: python3 test.py
