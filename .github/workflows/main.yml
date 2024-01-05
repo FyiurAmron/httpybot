@@ -14,12 +14,10 @@ jobs:
       #  - my_docker_volume:/volume_mount
       options: --user root
     steps:
-      - name: Cache container images
-        id: cache-container-images
-        uses: jamesmortensen/cache-container-images-action@v1
+      - name: Cache Docker images.
+        uses: ScribeMD/docker-cache@0.3.7
         with:
-          images: |
-            selenium/standalone-chrome
+          key: docker-${{ runner.os }}-${{ hashFiles(paths) }}
       - name: Repo checkout
         uses: actions/checkout@v4
       - name: Run script
