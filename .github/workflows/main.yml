@@ -4,7 +4,7 @@ on:
 jobs:
   run_pythong_action:
     runs-on: ubuntu-latest
-    container:
+    container: # TODO: download this docker inside the runner docker instead and cache it
       image: selenium/standalone-chrome
       #env:
       #  FOO: bar
@@ -14,10 +14,10 @@ jobs:
       #  - my_docker_volume:/volume_mount
       options: --user root
     steps:
-      - name: Cache Docker images.
-        uses: ScribeMD/docker-cache@0.3.7
-        with:
-          key: docker-${{ runner.os }}
+      #- name: Cache Docker images.
+      #  uses: ScribeMD/docker-cache@0.3.7
+      #  with:
+      #    key: docker-${{ runner.os }}
       - name: Repo checkout
         uses: actions/checkout@v4
       - name: Run script
