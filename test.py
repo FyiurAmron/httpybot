@@ -1,3 +1,4 @@
+import sys
 import time
 import datetime
 
@@ -88,4 +89,3 @@ apsleft = int(apsleftEl.text)
 print( "APs left: (after)", apsleft )
 
 chrome.quit() # not really needed, but added for clarity
-
