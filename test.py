@@ -29,6 +29,7 @@ chrome.find_element(By.CLASS_NAME, 'loginbutton').click()
 WebDriverWait(chrome, 10).until(EC.title_is('Pardus'))
 assert chrome.current_url == 'https://orion.pardus.at/game.php'
 
+chrome.switch_to.default_content()
 chrome.switch_to.frame('main')
 
 apsleft = chrome.find_element(By.ID, 'apsleft').text
@@ -46,16 +47,19 @@ chrome.find_element(By.NAME, 'name_lookup').submit()
 
 WebDriverWait(chrome, 10).until(EC.element_to_be_clickable((By.XPATH, '//button[text()="Hack"]'))).click()
 
+chrome.switch_to.default_content()
 chrome.switch_to.frame('msgframe')
 
 messageBox = WebDriverWait(chrome, 10).until(EC.visibility_of_element_located((By.CSS_SELECTOR, 'body > table > tbody > tr > td[align="center"] > table > tbody > tr > td:nth-child(2) > font')))
 
 print(messageBox.text)
 
+chrome.switch_to.default_content()
 chrome.switch_to.frame('menu')
 
 chrome.find_element(By.CSS_SELECTOR, 'a[href="main.php"]').click()
 
+chrome.switch_to.default_content()
 chrome.switch_to.frame('main')
 
 apsleft = WebDriverWait(chrome, 10).until(EC.presence_of_element_located((By.ID, 'apsleft')))
