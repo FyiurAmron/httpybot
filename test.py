@@ -3,6 +3,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+import time
 
 options = Options()
 options.headless = True
@@ -22,7 +23,14 @@ print(chrome.title)
 assert 'Free Browser Game' in chrome.title
 chrome.find_element(By.NAME, 'acc').send_keys('spamove@gmail.com')
 chrome.find_element(By.NAME, 'pw').send_keys('qzwxec')
-chrome.find_element(By.NAME, 'login').submit()
+# chrome.find_element(By.NAME, 'login').submit()
+chrome.find_element(By.CSS_SELECTOR, "form[name='login']").submit()
+
+print(chrome.title)
+
+time.sleep(3)
+
+print(chrome.title)
 
 WebDriverWait(chrome, 10).until(EC.title_is('Pardus'))
 assert chrome.current_url == 'https://orion.pardus.at/game.php'
