@@ -26,5 +26,8 @@ jobs:
     - name: Install Python dependencies
       run: wget https://bootstrap.pypa.io/get-pip.py && python3 get-pip.py && python3 -m pip install selenium
 
+    - name: Test Chrome
+      run: chrome --headless
+
     - name: Run Tests
       run: python3 test.py --backend http://localhost:8080/ --frontend http://${{ steps.ip_addr.outputs.ip }}:4200 --selenium http://localhost:4444/wd/hub
