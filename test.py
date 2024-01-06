@@ -26,14 +26,11 @@ chrome.find_element(By.NAME, 'pw').send_keys('qzwxec')
 # form submit doesn't work due to JS magic feeding password's MD5 hash to a hidden input field
 chrome.find_element(By.CLASS_NAME, 'loginbutton').click()
 
-print(chrome.title)
-
-time.sleep(3)
-
-print(chrome.title)
-
 WebDriverWait(chrome, 10).until(EC.title_is('Pardus'))
 assert chrome.current_url == 'https://orion.pardus.at/game.php'
+
+apsleft = chrome.find_element(By.ID, 'apsleft').text
+print( "APs left: (before)", apsleft )
 
 chrome.switch_to.frame('main')
 
@@ -46,10 +43,19 @@ WebDriverWait(chrome, 10).until(EC.presence_of_element_located((By.LINK_TEXT, 'H
 WebDriverWait(chrome, 10).until(EC.presence_of_element_located((By.LINK_TEXT, 'Return to the Black Market')))
 chrome.find_element(By.NAME, 'lookup_name').send_keys('Cras').submit()
 
-WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//button[text()='Hack']"))).click()
+WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//button[text()="Hack"]'))).click()
 
 chrome.switch_to.frame('msgframe')
 
-messageBox = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.CSS_SELECTOR, "body > table > tbody > tr > td[align='center'] > table > tbody > tr > td:nth-child(2) > font")))
+messageBox = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.CSS_SELECTOR, 'body > table > tbody > tr > td[align="center"] > table > tbody > tr > td:nth-child(2) > font')))
 
 print(messageBox.text)
+
+chrome.switch_to.frame('menu')
+
+chrome.find_element(By.CSS_SELECTOR, 'a[href="main.php"]').click()
+
+chrome.switch_to.frame('main')
+
+apsleft = WebDriverWait(chrome, 10).until(EC.presence_of_element_located((By.ID, 'apsleft')))
+print( "APs left: (after)", apsleft )
