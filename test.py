@@ -63,4 +63,7 @@ chrome.switch_to.default_content()
 chrome.switch_to.frame('main')
 
 apsleft = WebDriverWait(chrome, 10).until(EC.presence_of_element_located((By.ID, 'apsleft')))
-print( "APs left: (after)", apsleft )
+print( "APs left: (after)", apsleft.text )
+
+chrome.quit() # not really needed, but added for clarity
+
