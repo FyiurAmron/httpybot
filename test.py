@@ -9,7 +9,7 @@ REQ_APS = 100 # lame hack
 
 options = ChromeOptions()
 options.headless = True
-options.add_argument(
+for arg in [
   '--disable-gpu',
   '--disable-extensions',
   '--disable-infobars',
@@ -18,7 +18,8 @@ options.add_argument(
   '--start-maximized',
   '--no-sandbox'
   # '--headless',
-)
+]:
+  options.add_argument(arg)
 
 chrome = webdriver.Chrome(options=options)
 
