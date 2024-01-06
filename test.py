@@ -24,7 +24,7 @@ assert 'Free Browser Game' in chrome.title
 chrome.find_element(By.NAME, 'acc').send_keys('spamove@gmail.com')
 chrome.find_element(By.NAME, 'pw').send_keys('qzwxec')
 # form submit doesn't work due to JS magic feeding password's MD5 hash to a hidden input field
-chrome.find_element(By.CLASS, 'loginbutton').click()
+chrome.find_element(By.CLASS_NAME, 'loginbutton').click()
 
 print(chrome.title)
 
