@@ -29,10 +29,10 @@ chrome.find_element(By.CLASS_NAME, 'loginbutton').click()
 WebDriverWait(chrome, 10).until(EC.title_is('Pardus'))
 assert chrome.current_url == 'https://orion.pardus.at/game.php'
 
+chrome.switch_to.frame('main')
+
 apsleft = chrome.find_element(By.ID, 'apsleft').text
 print( "APs left: (before)", apsleft )
-
-chrome.switch_to.frame('main')
 
 chrome.find_element(By.LINK_TEXT, 'Land').click()
 
