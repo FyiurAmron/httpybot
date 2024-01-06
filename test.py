@@ -33,6 +33,8 @@ chrome.find_element(By.CLASS_NAME, 'loginbutton').click()
 
 WebDriverWait(chrome, 10).until(EC.title_is('Pardus'))
 assert chrome.current_url == 'https://orion.pardus.at/game.php'
+now = datetime.datetime.now()
+print(now)
 
 chrome.switch_to.default_content()
 chrome.switch_to.frame('main')
@@ -63,6 +65,9 @@ chrome.switch_to.frame('msgframe')
 messageBox = WebDriverWait(chrome, 10).until(EC.visibility_of_element_located((By.CSS_SELECTOR, 'body > table > tbody > tr > td[align="center"] > table > tbody > tr > td:nth-child(2) > font')))
 
 print(messageBox.text)
+
+now = datetime.datetime.now()
+print(now)
 
 chrome.switch_to.default_content()
 chrome.switch_to.frame('menu')
