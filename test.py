@@ -10,7 +10,11 @@ REQ_APS = 100 # lame hack
 options = ChromeOptions()
 options.headless = True
 for arg in [
+  '--headless=new',
+  '--use-angle=disabled',
+  '--use-gl=swiftshader',
   '--disable-gpu',
+  '--disable-gpu-sandbox',
   '--disable-extensions',
   '--disable-infobars',
   '--disable-notifications',
