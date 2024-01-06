@@ -22,7 +22,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Install Selenium in Pythong # TODO just create an image with this added
         run: wget https://bootstrap.pypa.io/get-pip.py && python3 get-pip.py && python3 -m pip install selenium
-      - name: Verify Chrome
-        run: which google-chrome-stable || google-chrome-stable --headless
+      - name: Do we have Chrome on board?
+        run: which google-chrome-stable
       - name: Run script
         run: python3 test.py
