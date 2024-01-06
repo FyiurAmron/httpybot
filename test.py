@@ -20,9 +20,9 @@ chrome = webdriver.Chrome(options=options)
 chrome.get('https://pardus.at/')
 print(chrome.title)
 assert 'Free Browser Game' in chrome.title
-chrome.find_element_by_name('acc').send_keys('spamove@gmail.com')
-chrome.find_element_by_name('pw').send_keys('qzwxec')
-chrome.find_element_by_name('login').submit()
+chrome.find_element(By.NAME, 'acc').send_keys('spamove@gmail.com')
+chrome.find_element(By.NAME, 'pw').send_keys('qzwxec')
+chrome.find_element(By.NAME, 'login').submit()
 
 WebDriverWait(chrome, 10).until(EC.title_is('Pardus'))
 assert chrome.current_url == 'https://orion.pardus.at/game.php'
@@ -36,7 +36,7 @@ WebDriverWait(chrome, 10).until(EC.presence_of_element_located((By.LINK_TEXT, 'B
 WebDriverWait(chrome, 10).until(EC.presence_of_element_located((By.LINK_TEXT, 'Hack Information'))).click()
 
 WebDriverWait(chrome, 10).until(EC.presence_of_element_located((By.LINK_TEXT, 'Return to the Black Market')))
-chrome.find_element_by_name('lookup_name').send_keys('Cras').submit()
+chrome.find_element(By.NAME, 'lookup_name').send_keys('Cras').submit()
 
 WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//button[text()='Hack']"))).click()
 
