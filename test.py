@@ -1,22 +1,24 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
 
 REQ_APS = 100 # lame hack
 
-options = Options()
+options = ChromeOptions()
 options.headless = True
-options.add_argument('--disable-gpu')
-options.add_argument('--disable-extensions')
-options.add_argument('--disable-infobars')
-options.add_argument('--disable-notifications')
-options.add_argument('--disable-dev-shm-usage')
-options.add_argument('--start-maximized')
-options.add_argument('--headless')
-options.add_argument('--no-sandbox')
+options.add_arguments(
+  '--disable-gpu',
+  '--disable-extensions',
+  '--disable-infobars',
+  '--disable-notifications',
+  '--disable-dev-shm-usage',
+  '--start-maximized',
+  '--no-sandbox'
+  # '--headless',
+)
 
 chrome = webdriver.Chrome(options=options)
 
@@ -35,6 +37,7 @@ chrome.switch_to.default_content()
 chrome.switch_to.frame('main')
 
 apsleft = chrome.find_element(By.ID, 'apsleft').text
+apsleft = int(apsleft)
 print( "APs left: (before)", apsleft )
 if ( apsleft < REQ_APS ):
   print( "less than required", REQ_APS, "APs, terminating..." )
@@ -69,6 +72,7 @@ chrome.switch_to.default_content()
 chrome.switch_to.frame('main')
 
 apsleft = WebDriverWait(chrome, 10).until(EC.presence_of_element_located((By.ID, 'apsleft')))
+apsleft = int(apsleft)
 print( "APs left: (after)", apsleft.text )
 
 chrome.quit() # not really needed, but added for clarity
