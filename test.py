@@ -45,8 +45,8 @@ print(now)
 chrome.switch_to.default_content()
 chrome.switch_to.frame('main')
 
-apsleft = chrome.find_element(By.ID, 'apsleft').text
-apsleft = int(apsleft)
+apsleftEl = chrome.find_element(By.ID, 'apsleft')
+apsleft = int(apsleftEl.text)
 print( "APs left: (before)", apsleft )
 if ( apsleft < REQ_APS ):
   print( "less than required", REQ_APS, "APs, terminating..." )
@@ -83,9 +83,9 @@ chrome.find_element(By.CSS_SELECTOR, 'a[href="main.php"]').click()
 chrome.switch_to.default_content()
 chrome.switch_to.frame('main')
 
-apsleft = WebDriverWait(chrome, 10).until(EC.presence_of_element_located((By.ID, 'apsleft')))
-apsleft = int(apsleft)
-print( "APs left: (after)", apsleft.text )
+apsleftEl = WebDriverWait(chrome, 10).until(EC.presence_of_element_located((By.ID, 'apsleft')))
+apsleft = int(apsleftEl.text)
+print( "APs left: (after)", apsleft )
 
 chrome.quit() # not really needed, but added for clarity
 
