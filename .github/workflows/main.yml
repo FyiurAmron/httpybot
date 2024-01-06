@@ -1,6 +1,8 @@
 name: run pythong action
 on:
   workflow_dispatch:
+  schedule:
+    - cron: '*/5 * * * *'
 jobs:
   run_pythong_action:
     runs-on: ubuntu-latest
