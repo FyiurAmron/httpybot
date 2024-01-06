@@ -17,7 +17,7 @@ for arg in [
   '--disable-dev-shm-usage',
   '--start-maximized',
   '--no-sandbox'
-  '--headless',
+  '--headless=new',
 ]:
   options.add_argument(arg)
 
