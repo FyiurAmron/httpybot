@@ -27,4 +27,4 @@ jobs:
       - name: Do we have Chrome on board?
         run: which google-chrome-stable
       - name: Run script
-        run: python3 test.py || google-chrome-stable --headless
+        run: python3 test.py || google-chrome-stable --headless --disable-gpu --disable-extensions --disable-infobars --disable-notifications --disable-dev-shm-usage --start-maximized --no-sandbox --headless
