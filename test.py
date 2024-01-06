@@ -9,7 +9,7 @@ REQ_APS = 100 # lame hack
 
 options = ChromeOptions()
 options.headless = True
-options.add_arguments(
+options.add_argument(
   '--disable-gpu',
   '--disable-extensions',
   '--disable-infobars',
