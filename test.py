@@ -44,11 +44,11 @@ WebDriverWait(chrome, 10).until(EC.presence_of_element_located((By.LINK_TEXT, 'R
 chrome.find_element(By.NAME, 'lookup_name').send_keys('Cras')
 chrome.find_element(By.NAME, 'name_lookup').submit()
 
-WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//button[text()="Hack"]'))).click()
+WebDriverWait(chrome, 10).until(EC.element_to_be_clickable((By.XPATH, '//button[text()="Hack"]'))).click()
 
 chrome.switch_to.frame('msgframe')
 
-messageBox = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.CSS_SELECTOR, 'body > table > tbody > tr > td[align="center"] > table > tbody > tr > td:nth-child(2) > font')))
+messageBox = WebDriverWait(chrome, 10).until(EC.visibility_of_element_located((By.CSS_SELECTOR, 'body > table > tbody > tr > td[align="center"] > table > tbody > tr > td:nth-child(2) > font')))
 
 print(messageBox.text)
 
