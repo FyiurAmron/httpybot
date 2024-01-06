@@ -5,6 +5,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
 
+REQ_APS = 100 # lame hack
+
 options = Options()
 options.headless = True
 options.add_argument('--disable-gpu')
@@ -34,6 +36,10 @@ chrome.switch_to.frame('main')
 
 apsleft = chrome.find_element(By.ID, 'apsleft').text
 print( "APs left: (before)", apsleft )
+if ( apsleft < REQ_APS ):
+  print( "less than required", REQ_APS, "APs, terminating..." )
+  chrome.quit()
+  sys.exit()
 
 chrome.find_element(By.LINK_TEXT, 'Land').click()
 
