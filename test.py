@@ -113,16 +113,15 @@ human_link_click('Hack Information')
 
 human_form_fill('lookup_name', 'a')
 human_selector_click('[name="name_lookup"]')
-human_selector_click('#doHackButton')
 
-switch_to_frame('msgframe')
+while apsleft >= MIN_APS:
+  log( f'APs left ({apsleft}) >= MIN_APS ({MIN_APS}), proceeding...'
+  human_selector_click('#doHackButton')
+  switch_to_frame('msgframe')
+  message = get_text_by_selector('body > table > tbody > tr > td[align="center"] > table > tbody > tr > td:nth-child(2) > font')
+  log(message)
+  switch_to_frame('main')
+  apsleft = get_int_by_selector('table.messagestyle > tbody > tr > td > b')
 
-message = get_text_by_selector('body > table > tbody > tr > td[align="center"] > table > tbody > tr > td:nth-child(2) > font')
-
-log(message)
-
-apsleft = get_int_by_selector('table.messagestyle > tbody > tr > td > b')
-
-log( f'APs left: {apsleft}' )
-
+log( f'APs left ({apsleft}) < MIN_APS ({MIN_APS}), exiting...' )
 chrome.quit() # not really needed, but added for clarity
