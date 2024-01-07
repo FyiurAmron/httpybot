@@ -38,6 +38,7 @@ def human_delay():
 def switch_to_frame(frame_id):
   chrome.switch_to.default_content()
   chrome.switch_to.frame(frame_id)
+  log( f'switched frame to "{frame_id}"' )
 
 def log(text):
   print( f'{now()}: {text}' )  
