@@ -115,7 +115,7 @@ human_form_fill('lookup_name', 'a')
 human_selector_click('[name="name_lookup"]')
 
 while apsleft >= MIN_APS:
-  log( f'APs left ({apsleft}) >= MIN_APS ({MIN_APS}), proceeding...'
+  log( f'APs left ({apsleft}) >= MIN_APS ({MIN_APS}), proceeding...' )
   human_selector_click('#doHackButton')
   switch_to_frame('msgframe')
   message = get_text_by_selector('body > table > tbody > tr > td[align="center"] > table > tbody > tr > td:nth-child(2) > font')
