@@ -9,7 +9,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 
-MIN_APS = 4400
+MIN_APS = 4200
 
 options = ChromeOptions()
 options.headless = True
@@ -105,6 +105,7 @@ if len(launch_ship) > 0:
   log( 'ship docked...' )
   human_delay()
   launch_ship[0].click()
+  switch_to_frame('main') # probably required due to focus loss
   log( 'ship launched' )
 
 human_link_click('Land')
