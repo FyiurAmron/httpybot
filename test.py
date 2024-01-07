@@ -9,7 +9,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 
-MIN_APS = 4200
+MIN_APS = 4400
 
 options = ChromeOptions()
 options.headless = True
