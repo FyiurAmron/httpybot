@@ -119,8 +119,8 @@ message = get_text_by_selector('body > table > tbody > tr > td[align="center"] >
 
 log(message)
 
-menu_click('main')
+apsleft = get_int_by_selector('table.messagestyle > tbody > tr > td > b')
 
-log( f'APs left: {get_int_by_selector("#apsleft")}' )
+log( f'APs left: {apsleft}' )
 
 chrome.quit() # not really needed, but added for clarity
