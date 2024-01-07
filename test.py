@@ -100,10 +100,10 @@ if ( apsleft < MIN_APS ):
 
 # ship may be or may be not docked
 
-launch_ship = chrome.find_element(By.CSS_SELECTOR, '[value="Launch Ship"]')
-if launch_ship is not None:
+launch_ship = chrome.find_elements(By.CSS_SELECTOR, '[value="Launch Ship"]')
+if len(launch_ship) > 0:
   human_delay()
-  launch_ship.click()
+  launch_ship[0].click()
 
 human_link_click('Land')
 human_link_click('Black Market')
