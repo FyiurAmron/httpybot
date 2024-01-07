@@ -103,7 +103,7 @@ if ( apsleft < MIN_APS ):
 
 launch_ship = chrome.find_elements(By.CSS_SELECTOR, '[value="Launch Ship"]')
 if len(launch_ship) > 0:
-  log( 'ship docked...' )
+  log( 'ship is docked, commencing launch...' )
   human_delay()
   launch_ship[0].click()
   switch_to_frame('main') # probably required due to focus loss
