@@ -114,6 +114,6 @@ log(message)
 
 menu_click('main')
 
-log( f'APs left: {get_int_by_selector('#apsleft')}' )
+log( f'APs left: {get_int_by_selector("#apsleft")}' )
 
 chrome.quit() # not really needed, but added for clarity
