@@ -102,8 +102,10 @@ if ( apsleft < MIN_APS ):
 
 launch_ship = chrome.find_elements(By.CSS_SELECTOR, '[value="Launch Ship"]')
 if len(launch_ship) > 0:
+  log( 'ship docked...' )
   human_delay()
   launch_ship[0].click()
+  log( 'ship launched' )
 
 human_link_click('Land')
 human_link_click('Black Market')
