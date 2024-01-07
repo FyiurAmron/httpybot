@@ -98,6 +98,13 @@ if ( apsleft < MIN_APS ):
   chrome.quit()
   sys.exit()
 
+# ship may be or may be not docked
+
+launch_ship = chrome.find_element(By.CSS_SELECTOR, '[value="Launch Ship"')
+if launch_ship is not None:
+  human_delay()
+  launch_ship.click()
+
 human_link_click('Land')
 human_link_click('Black Market')
 human_link_click('Hack Information')
