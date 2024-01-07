@@ -49,7 +49,7 @@ def human_form_fill(name, text):
   el = wait_until(EC.presence_of_element_located((By.NAME, name)))
   human_delay()
   el.send_keys(text)
-  log( f'sent keys "text" to form field "name"' )   
+  log( f'sent keys "{text}" to form field "{name}"' )   
 
 def human_click(by, value, log_msg):
   el = wait_until(EC.presence_of_element_located((by, value)))
