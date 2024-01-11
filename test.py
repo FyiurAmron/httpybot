@@ -52,11 +52,13 @@ def human_form_fill(name, text):
   el.send_keys(text)
   log( f'sent keys "{text}" to form field "{name}"' )   
 
-def human_click(by, value, log_msg):
-  el = wait_until(EC.presence_of_element_located((by, value)))
+def human_click(el, log_msg):
   human_delay()
   el.click()
   log( f'clicked {log_msg}' ) 
+
+def human_click(by, value, log_msg):
+  human_click( wait_until(EC.presence_of_element_located((by, value))), log_msg )
 
 def human_link_click(link_text):
   human_click(By.LINK_TEXT, link_text, f'link "{link_text}"')
@@ -74,6 +76,10 @@ def get_text_by_selector(css_selector):
 
 def get_int_by_selector(css_selector):
   return int(get_text_by_selector(css_selector))
+
+def find_by(by, value):
+  els = chrome.find_elements(by, value)
+  return els[0] if len(els) > 0 else None
 
 # note that form.submit() is generally bad idea, and Pardus showcases that very effectively:
 # e.g. direct form submit doesn't work due to JS onClick feeding password's MD5 hash to a hidden input field etc.
@@ -101,15 +107,20 @@ if ( apsleft < MIN_APS ):
 
 # ship may be or may be not docked
 
-launch_ship = chrome.find_elements(By.CSS_SELECTOR, '[value="Launch Ship"]')
-if len(launch_ship) > 0:
+launch_ship = find_by(By.CSS_SELECTOR, '[value="Launch Ship"]')
+if launch_ship is not None:
   log( 'ship is docked, commencing launch...' )
   human_delay()
-  launch_ship[0].click()
+  launch_ship.click()
   switch_to_frame('main') # probably required due to focus loss
   log( 'ship launched' )
 
-human_link_click('Land')
+land_or_enter = find_by(By.LINK_TEXT, 'Land')
+if land_or_enter is None:
+  land_or_enter = find_by(By.LINK_TEXT, 'Enter')
+#if land_or_enter is None:
+## do cloaking instead, should be possible everywhere
+human_click(land_or_enter, f"clicking '{land_or_enter.text}' to land/enter") 
 human_link_click('Black Market')
 human_link_click('Hack Information')
 
