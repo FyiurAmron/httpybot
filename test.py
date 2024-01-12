@@ -122,7 +122,8 @@ if land_or_enter is None:
   land_or_enter = find_by(By.LINK_TEXT, 'Enter')
 #if land_or_enter is None:
 ## do cloaking instead, should be possible everywhere
-human_click_el( land_or_enter, f"clicking '{land_or_enter.text}' to land/enter" )
+log( 'trying to land/enter...' )
+human_click_el( land_or_enter, f"'{land_or_enter.text}'" )
 human_link_click('Black Market')
 human_link_click('Hack Information')
 
