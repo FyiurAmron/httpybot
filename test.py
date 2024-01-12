@@ -109,10 +109,12 @@ log( 'login successful' )
 switch_to_frame('main')
 
 apsleft = get_int_by_selector('#apsleft')
-log( f'APs left: {apsleft}' )
+
 if ( apsleft < MIN_APS ):
-  log( f'less than minimum {MIN_APS} APs' )
+  log( f'APs left ({apsleft}) < MIN_APS ({MIN_APS})' )
   exit()
+
+log( f'APs left: {apsleft}' )
 
 # ship may be or may be not docked
 
@@ -133,6 +135,7 @@ if action_schema == 'cloak':
       human_selector_click('#inputShipUncloak')
     human_selector_click('#inputShipCloak')
     apsleft = get_int_by_selector('#apsleft')
+  log( f'APs left ({apsleft}) < MIN_APS ({MIN_APS})' )
   exit()
 
 if action_schema != 'hack':
@@ -161,5 +164,5 @@ while apsleft >= MIN_APS:
   switch_to_frame('main')
   apsleft = get_int_by_selector('table.messagestyle > tbody > tr > td > b')
 
-log( f'APs left ({apsleft}) < MIN_APS ({MIN_APS}), exiting...' )
+log( f'APs left ({apsleft}) < MIN_APS ({MIN_APS})' )
 chrome.quit() # not really needed, but added for clarity
