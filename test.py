@@ -11,7 +11,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 
 DEFAULT_MIN_APS = 4400
-MIN_APS = os.environ.get( 'MIN_APS', DEFAULT_MIN_APS )
+MIN_APS = int( os.environ.get( 'MIN_APS', DEFAULT_MIN_APS ) )
 
 options = ChromeOptions()
 options.headless = True
