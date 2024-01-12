@@ -83,6 +83,11 @@ def find_by(by, value):
   els = chrome.find_elements(by, value)
   return els[0] if len(els) > 0 else None
 
+def exit():
+  log( 'exiting...' )
+  chrome.quit()
+  sys.exit()
+
 # note that form.submit() is generally bad idea, and Pardus showcases that very effectively:
 # e.g. direct form submit doesn't work due to JS onClick feeding password's MD5 hash to a hidden input field etc.
 
@@ -103,9 +108,8 @@ switch_to_frame('main')
 apsleft = get_int_by_selector('#apsleft')
 log( f'APs left: {apsleft}' )
 if ( apsleft < MIN_APS ):
-  log( f'less than minimum {MIN_APS} APs, doing nothing and exiting...' )
-  chrome.quit()
-  sys.exit()
+  log( f'less than minimum {MIN_APS} APs' )
+  exit()
 
 # ship may be or may be not docked
 
@@ -116,6 +120,20 @@ if launch_ship is not None:
   launch_ship.click()
   switch_to_frame('main') # probably required due to focus loss
   log( 'ship launched' )
+
+action_schema = os.environ.get( 'ACTION_SCHEMA', 'cloak' )
+
+if action_schema == 'cloak':
+  while apsleft >= MIN_APS:
+    log( f'APs left ({apsleft}) >= MIN_APS ({MIN_APS}), proceeding...' )
+    human_selector_click('#inputShipCloak')
+    human_selector_click('#inputShipUncloak')
+    apsleft = get_int_by_selector('#apsleft')
+  exit()
+
+if action_schema != 'hack':
+  log( f'unknown ACTION_SCHEMA: "{ACTION_SCHEMA}"' )
+  exit()
 
 land_or_enter = find_by(By.LINK_TEXT, 'Land')
 if land_or_enter is None:
