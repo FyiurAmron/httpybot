@@ -3,6 +3,10 @@ on:
   workflow_dispatch:
   schedule:
     - cron: '0 * * * *'
+
+env:
+  MIN_APS: ${{ vars.MIN_APS }}
+
 jobs:
   run_pythong_action:
     runs-on: ubuntu-latest
