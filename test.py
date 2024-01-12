@@ -52,13 +52,13 @@ def human_form_fill(name, text):
   el.send_keys(text)
   log( f'sent keys "{text}" to form field "{name}"' )   
 
-def human_click(el, log_msg):
+def human_click_el(el, log_msg):
   human_delay()
   el.click()
   log( f'clicked {log_msg}' ) 
 
 def human_click(by, value, log_msg):
-  human_click( wait_until(EC.presence_of_element_located((by, value))), log_msg )
+  human_click_el( wait_until(EC.presence_of_element_located((by, value))), log_msg )
 
 def human_link_click(link_text):
   human_click(By.LINK_TEXT, link_text, f'link "{link_text}"')
