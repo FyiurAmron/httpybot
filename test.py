@@ -55,9 +55,12 @@ def human_form_fill(name, text):
   log( f'sent keys "{text}" to form field "{name}"' )   
 
 def human_click_el(el, log_msg):
+  log( f'waiting to click {log_msg}' ) 
   human_delay()
-  el.click()
+  el.click()  
   log( f'clicked {log_msg}' ) 
+  human_delay()
+  log( f'action cooldown ended for clicking {log_msg}' )
 
 def human_click(by, value, log_msg):
   human_click_el( wait_until(EC.presence_of_element_located((by, value))), log_msg )
