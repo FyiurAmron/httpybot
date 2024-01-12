@@ -126,8 +126,9 @@ action_schema = os.environ.get( 'ACTION_SCHEMA', 'cloak' )
 if action_schema == 'cloak':
   while apsleft >= MIN_APS:
     log( f'APs left ({apsleft}) >= MIN_APS ({MIN_APS}), proceeding...' )
+    if find_by( By.ID, 'tdShipCloaked' ) is not None:
+      human_selector_click('#inputShipUncloak')
     human_selector_click('#inputShipCloak')
-    human_selector_click('#inputShipUncloak')
     apsleft = get_int_by_selector('#apsleft')
   exit()
 
