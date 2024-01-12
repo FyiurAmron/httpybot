@@ -2,6 +2,7 @@ import sys
 import time
 import datetime
 import random
+import os
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -9,7 +10,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 
-MIN_APS = 4400
+DEFAULT_MIN_APS = 4400
+MIN_APS = os.environ.get( 'MIN_APS', DEFAULT_MIN_APS )
 
 options = ChromeOptions()
 options.headless = True
