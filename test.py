@@ -13,6 +13,13 @@ from selenium.webdriver.chrome.options import Options as ChromeOptions
 DEFAULT_MIN_APS = 4400
 MIN_APS = int( os.environ.get( 'MIN_APS', DEFAULT_MIN_APS ) )
 
+BOT_ENABLED = os.environ.get( 'BOT_ENABLED', 'true' )
+
+if ( BOT_ENABLED != 'true' ):
+  log( "BOT_ENABLED != 'true'" )
+  log( 'exiting...' )
+  sys.exit()
+
 options = ChromeOptions()
 options.headless = True
 for arg in [
@@ -119,7 +126,7 @@ log( f'APs left: {apsleft}' )
 # ship may be or may be not docked
 
 launch_ship = find_by(By.CSS_SELECTOR, '[value="Launch Ship"]')
-if launch_ship is not None:
+if ( launch_ship is not None ):
   log( 'ship is docked, commencing launch...' )
   human_delay()
   launch_ship.click()
@@ -128,24 +135,24 @@ if launch_ship is not None:
 
 action_schema = os.environ.get( 'ACTION_SCHEMA', 'cloak' )
 
-if action_schema == 'cloak':
+if ( action_schema == 'cloak' ):
   while apsleft >= MIN_APS:
     log( f'APs left ({apsleft}) >= MIN_APS ({MIN_APS}), proceeding...' )
-    if find_by( By.ID, 'tdShipCloaked' ) is not None:
+    if ( find_by( By.ID, 'tdShipCloaked' ) is not None ):
       human_selector_click('#inputShipUncloak')
     human_selector_click('#inputShipCloak')
     apsleft = get_int_by_selector('#apsleft')
   log( f'APs left ({apsleft}) < MIN_APS ({MIN_APS})' )
   exit()
 
-if action_schema != 'hack':
+if ( action_schema != 'hack' ):
   log( f'unknown ACTION_SCHEMA: "{ACTION_SCHEMA}"' )
   exit()
 
 land_or_enter = find_by(By.LINK_TEXT, 'Land')
-if land_or_enter is None:
+if ( land_or_enter is None ):
   land_or_enter = find_by(By.LINK_TEXT, 'Enter')
-#if land_or_enter is None:
+#if ( land_or_enter is None ):
 ## do cloaking instead, should be possible everywhere
 log( 'trying to land/enter...' )
 human_click_el( land_or_enter, f"'{land_or_enter.text}'" )
