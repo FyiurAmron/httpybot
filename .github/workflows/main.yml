@@ -7,6 +7,7 @@ on:
 env:
   MIN_APS: ${{ vars.MIN_APS }}
   ACTION_SCHEMA: ${{ vars.ACTION_SCHEMA }}
+  BOT_ENABLED: ${{ vars.BOT_ENABLED }}
 
 jobs:
   run_pythong_action:
