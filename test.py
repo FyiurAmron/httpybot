@@ -10,6 +10,12 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 
+def now():
+  return datetime.datetime.now()
+
+def log(text):
+  print( f'{now()}: {text}' )
+
 DEFAULT_MIN_APS = 4400
 MIN_APS = int( os.environ.get( 'MIN_APS', DEFAULT_MIN_APS ) )
 
@@ -38,9 +44,6 @@ for arg in [
 
 chrome = webdriver.Chrome(options=options)
 
-def now():
-  return datetime.datetime.now()
-
 def human_delay():
   time.sleep(random.randint(1,3))
 
@@ -48,9 +51,6 @@ def switch_to_frame(frame_id):
   chrome.switch_to.default_content()
   chrome.switch_to.frame(frame_id)
   log( f'switched frame to "{frame_id}"' )
-
-def log(text):
-  print( f'{now()}: {text}' )  
 
 def wait_until(until_condition):
   return WebDriverWait(chrome, 10).until(until_condition)
