@@ -1,8 +1,8 @@
 name: run pythong action
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '0 * * * *'
+  #schedule:
+  #  - cron: '0 * * * *'
 
 env:
   MIN_APS: ${{ vars.MIN_APS }}
